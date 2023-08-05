@@ -4,9 +4,11 @@ from PIL import Image
 import pytesseract
 
 app = FastAPI()
+oem = 3
+psm = 6
 
 
-@app.get("/rcg/{item_id}")
+@app.get("/recognizetest/{item_id}")
 def read_root(item_id: str):
     print(pytesseract.get_languages(config=''))
 
@@ -16,6 +18,11 @@ def read_root(item_id: str):
     return {"data": g}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/recognize/{item_id}")
+def read_root(item_id: str):
+    print(pytesseract.get_languages(config=''))
+
+    g = pytesseract.image_to_string(Image.open(item_id), lang='kor+eng')
+    print(g)
+
+    return {"data": g}
