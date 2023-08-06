@@ -17,7 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 UPLOAD_DIR = "./images"
-CORD_ORIGINS = ["*"]
+CORS_ORIGINS = ["*", "http://localhost:9031", "https://scrap.devent.kr"]
 
 app = FastAPI()
 oem = 3
@@ -26,7 +26,7 @@ psm = 6
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=CORD_ORIGINS,
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
