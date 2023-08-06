@@ -6,6 +6,7 @@ fastapi==0.101.0
 h11==0.14.0
 httptools==0.6.0
 idna==3.4
+imutils==0.5.4
 packaging==23.1
 Pillow==10.0.0
 pydantic==2.1.1

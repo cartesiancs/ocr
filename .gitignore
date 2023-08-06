@@ -2,3 +2,4 @@ __pycache__
 kor.traineddata
 *.jpg
 .venv
+test.py

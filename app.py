@@ -4,6 +4,14 @@ from PIL import Image
 import pytesseract
 import uuid
 import os
+import matplotlib.pyplot as plt
+import imutils
+from imutils.perspective import four_point_transform
+from imutils.contours import sort_contours
+import cv2
+import re
+import requests
+import numpy as np
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -46,8 +54,15 @@ async def read_root(file: UploadFile):
     with open(os.path.join(UPLOAD_DIR, filename), "wb") as fp:
         fp.write(content)
 
-    print(pytesseract.get_languages(config=''))
 
-    text = pytesseract.image_to_string(Image.open(os.path.join(UPLOAD_DIR, filename)), lang='kor+eng')
+    savedFilename = os.path.join(UPLOAD_DIR, filename)
+    receipt = cv2.imread(savedFilename, cv2.IMREAD_COLOR)
+    gray = cv2.cvtColor(receipt, cv2.COLOR_BGR2GRAY)    
+    rectKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (30, 20))
+    
+    gray = cv2.GaussianBlur(gray, (11, 11), 0)
+    blackhat = cv2.morphologyEx(gray, cv2.MORPH_BLACKHAT, rectKernel)
+    
+    text = pytesseract.image_to_string(blackhat, lang='kor+eng')
 
     return {"data": text}
