@@ -8,5 +8,5 @@ RUN apt install -y tesseract-ocr
 RUN apt-get install tesseract-ocr-kor
 RUN apt install -y libtesseract-dev
 RUN pip install -r requirements.txt
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8083"]
-EXPOSE 8083
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "10083"]
+EXPOSE 10083

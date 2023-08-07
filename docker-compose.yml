@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - 9040:8083
+      - 9040:10083
     environment:
       VIRTUAL_HOST: ocr.scrap.devent.kr
       LETSENCRYPT_HOST: ocr.scrap.devent.kr
