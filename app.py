@@ -4,14 +4,12 @@ from PIL import Image
 import pytesseract
 import uuid
 import os
-import matplotlib.pyplot as plt
 import imutils
 from imutils.perspective import four_point_transform
 from imutils.contours import sort_contours
 import cv2
 import re
 import requests
-import numpy as np
 
 from fastapi.middleware.cors import CORSMiddleware
 
